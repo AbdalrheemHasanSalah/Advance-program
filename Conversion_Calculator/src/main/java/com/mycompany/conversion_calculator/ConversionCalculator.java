@@ -599,7 +599,8 @@ decimalDoc();
                 new ConversionCalculator().setVisible(true);
             }
         });
-    }
+}
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;

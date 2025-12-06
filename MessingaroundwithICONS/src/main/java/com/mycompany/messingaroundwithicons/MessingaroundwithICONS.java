@@ -88,7 +88,7 @@ class  PathIcon  extends JFrame implements ActionListener
 
             @Override
             public void changedUpdate(DocumentEvent de) {
-                ok.doClick();
+               ok.doClick();
             }
         });
                 setSize(400,200);
@@ -101,6 +101,7 @@ class  PathIcon  extends JFrame implements ActionListener
 
         
 }
+   
     @Override
     public void actionPerformed(ActionEvent e) {
         Object T=e.getSource();
