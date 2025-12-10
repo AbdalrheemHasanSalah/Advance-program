@@ -271,7 +271,7 @@ jList1.setModel(model);
     private void AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddActionPerformed
         // TODO add your handling code here:
       // sql.Add_new_student(s);
-     AddJFrame af=new AddJFrame();
+     AddJFrame af=new AddJFrame(this);
        jDesktopPane1.add(af);
                list();
 
@@ -284,7 +284,7 @@ jList1.setModel(model);
 
     private void DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteActionPerformed
         // TODO add your handling code here:
-         deleteJFrame df=new deleteJFrame();
+         deleteJFrame df=new deleteJFrame(this);
        jDesktopPane1.add(df);
                list();
 
@@ -307,14 +307,25 @@ jList1.setModel(model);
 
     private void modifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyActionPerformed
         // TODO add your handling code here:
-                list();
+
+        
+        changeJFrame cf=new changeJFrame(this);
+       jDesktopPane1.add(cf);
+               list();
+
+     cf.setVisible(true);
+                     list();
 
     }//GEN-LAST:event_modifyActionPerformed
 
     private void changeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeActionPerformed
         // TODO add your handling code here:
-                list();
+changeJFrame cf=new changeJFrame(this);
+       jDesktopPane1.add(cf);
+               list();
 
+     cf.setVisible(true);
+                     list();
     }//GEN-LAST:event_changeActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing

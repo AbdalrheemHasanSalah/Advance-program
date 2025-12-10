@@ -101,12 +101,13 @@ grades_name=new String[index];
     grades_name[i]=grade_list.get(i).getGradeName();
     grades[i]=grade_list.get(i).getGradeValue();}
      
-                   int sum=0;
+                   double sum=0;
+                   double size=grade_list.size();
        for(int i=0;i<grade_list.size();i++){
          sum+= grade_list.get(i).getGradeValue();
        }
        try
-       {average=sum/grade_list.size();}
+       {average=sum/size;}
        catch(ArithmeticException e){
            System.out.println(e);
            average=0;
@@ -114,12 +115,13 @@ grades_name=new String[index];
             }
 
    public double computedaverage(ArrayList <Grade> g){
-       int sum=0;
+       double sum=0;
+       double size=g.size();
        for(int i=0;i<g.size();i++){
          sum+= g.get(i).getGradeValue();
        }
        try{
-       average=sum/g.size();
+       average=sum/size;
        }
        catch(ArithmeticException e){
            average=0;
@@ -127,12 +129,13 @@ grades_name=new String[index];
        return average;
    }
 public double computedaverage(double g[]){
-       int sum=0;
+       double sum=0;
+       double size=g.length;
        for(int i=0;i<g.length;i++){
          sum+= g[i];
        }
         try{
-       average=sum/g.length;
+       average=sum/size;
        }
        catch(ArithmeticException e){
            average=0;

@@ -8,19 +8,25 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author styde
  */
 public class AddJFrame extends javax.swing.JInternalFrame {
-     student s=null;
-        ArrayList<Grade> grade = new ArrayList<>();
-SQL sql;
+     private student s=null;
+       private ArrayList<Grade> grade = new ArrayList<>();
+            private mainFrame main; 
+
+           private SQL sql;
     /**
      * Creates new form AddJFrame
      */
-    public AddJFrame() {
+    
+    public AddJFrame(mainFrame main) {
+                this.main=main;
+
         initComponents();
          try {
              sql=new SQL();
@@ -247,10 +253,15 @@ System.out.println(ex);
       
  
        // TODO add your handling code here:
-       if ( !(evt.getKeyChar()>='0' && evt.getKeyChar()<='9'))
-                    evt.consume();
-       
-       
+
+if ( !((evt.getKeyChar() >= '0' && evt.getKeyChar() <= '9') || evt.getKeyChar() == '.') ) {
+    evt.consume();  // not digit and not dot → block
+}
+
+if (evt.getKeyChar() == '.' && gradesjTextField.getText().contains(".")) {
+    evt.consume();  // second dot → block
+}
+
     }//GEN-LAST:event_gradesjTextFieldKeyTyped
 
     private void SubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitActionPerformed
@@ -260,50 +271,65 @@ System.out.println(ex);
         if (grade == null) {
     grade = new ArrayList<>();
 }
-          g=new Grade(GradesnamejTextField.getText(),Integer.parseInt(gradesjTextField.getText()));
+if(IDjTextField.getText().trim().isEmpty()||fairstnameJTextfield.getText().trim().isEmpty()||lastnamejTextField.getText().trim().isEmpty()||male_jRadioButton1.getText().trim().isEmpty()||GradesnamejTextField.getText().trim().isEmpty()||gradesjTextField.getText().trim().isEmpty()){
+     JOptionPane.showMessageDialog(this, "all fields are required");
+        }
+else{        double value = Double.parseDouble(gradesjTextField.getText());
+    if (value < 1 || value > 100) {
+    JOptionPane.showMessageDialog(this, "Enter a grade between 1 and 100");
+}
+else{         g=new Grade(GradesnamejTextField.getText(),Double.parseDouble(gradesjTextField.getText()));
 
-       if(male_jRadioButton1.isSelected()&&!(grade.contains(g)))
-       {
-           
-            grade.add(g);
-   int sum=0,average=0;
-       for(int i=0;i<grade.size();i++){
+
+try {
+        grade=sql.ARRY_GRADE(Integer.parseInt(IDjTextField.getText()));
+    } catch (SQLException ex) {
+System.out.println(ex);
+    }
+      grade.add(g);
+   double sum=0;
+
+              double average=0;
+                double size=grade.size();
+
+for(int i=0;i<grade.size();i++){
          sum+= grade.get(i).getGradeValue();
        }
        try{
-       average=sum/grade.size();}
+       average=sum/size;}
 catch(ArithmeticException e){
     average=0;
 }
+       if(male_jRadioButton1.isSelected()&&!(grade.contains(g.getGradeName())))
+       {
+    
+          
       s=new student(Integer.parseInt(IDjTextField.getText()),fairstnameJTextfield.getText(),lastnamejTextField.getText(),male_jRadioButton1.getText(),grade,average);
             try {
                 sql.create_or_update(s);
+
             } catch (ClassNotFoundException | SQLException ex) {
 System.out.println(ex);
             }
+
        }
 
 
-        if(female_jRadioButton2.isSelected()&& !(grade.contains(g)))
+        if(female_jRadioButton2.isSelected()&& !(grade.contains(g.getGradeName())))
        {
-           grade.add(g);
-   int sum=0,average=0;
-       for(int i=0;i<grade.size();i++){
-         sum+= grade.get(i).getGradeValue();
-       }
-       try{
-       average=sum/grade.size();}
-catch(ArithmeticException e){
-    average=0;
-}
+     
        s=new student(Integer.parseInt(IDjTextField.getText()),fairstnameJTextfield.getText(),lastnamejTextField.getText(),female_jRadioButton2.getText(),grade,average);
         try {
                 sql.create_or_update(s);
             } catch (ClassNotFoundException | SQLException ex) {
 System.out.println(ex);
-            }        
+            }
+        
        }
-       
+                                                         main.list();
+}
+}
+
     }//GEN-LAST:event_SubmitActionPerformed
 
     private void femaleRadiobuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_femaleRadiobuttonActionPerformed

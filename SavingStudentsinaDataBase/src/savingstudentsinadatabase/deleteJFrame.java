@@ -15,11 +15,13 @@ import javax.swing.JOptionPane;
  */
 public class deleteJFrame extends javax.swing.JInternalFrame{
 SQL sql;
+            private mainFrame main; 
 
     /**
      * Creates new form deleteJFrame
      */
-    public deleteJFrame() {
+    public deleteJFrame(mainFrame main) {
+        this.main=main;
         initComponents();
     try {
         sql=new SQL();
@@ -130,7 +132,9 @@ System.out.println(ex);
               } catch (SQLException ex) {
 System.out.println(ex);
               }
-                    
+                
+                                            main.list();
+
                 }
     }//GEN-LAST:event_deletejButton1ActionPerformed
 

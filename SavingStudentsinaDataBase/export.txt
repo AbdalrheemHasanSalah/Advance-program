@@ -1,0 +1,5 @@
+fname            lname            ID          sex         grades                     average   
+abood            salah            127         male        [g1:99.0]                  99.00     
+abd              sa               126         male        [g2:60.0]                  60.00     
+abd              sa               122         male        [g1:80.0,g2:97.0,g3:97.0]  91.00     
+abdalrheem       hassan           123         male        [g1:89.0,g2:20.0,g3:50.0]  53.00     

@@ -5,7 +5,7 @@
             <url>src/savingstudentsinadatabase/Text_export_and_import.java</url>
             <bookmark id="1">
                 <name/>
-                <line>137</line>
+                <line>140</line>
                 <key/>
             </bookmark>
         </file>
@@ -16,10 +16,10 @@
             <file>file:/C:/Users/styde/Documents/NetBeansProjects/SavingStudentsinaDataBase/src/savingstudentsinadatabase/SQL.java</file>
             <file>file:/C:/Users/styde/Documents/NetBeansProjects/SavingStudentsinaDataBase/src/savingstudentsinadatabase/Text_export_and_import.java</file>
             <file>file:/C:/Users/styde/Documents/NetBeansProjects/SavingStudentsinaDataBase/src/savingstudentsinadatabase/mainFrame.java</file>
-            <file>file:/C:/Users/styde/Documents/NetBeansProjects/SavingStudentsinaDataBase/src/savingstudentsinadatabase/AddJFrame.java</file>
             <file>file:/C:/Users/styde/Documents/NetBeansProjects/SavingStudentsinaDataBase/src/savingstudentsinadatabase/deleteJFrame.java</file>
             <file>file:/C:/Users/styde/Documents/NetBeansProjects/SavingStudentsinaDataBase/src/savingstudentsinadatabase/SearchJFrame.java</file>
             <file>file:/C:/Users/styde/Documents/NetBeansProjects/SavingStudentsinaDataBase/src/savingstudentsinadatabase/student.java</file>
+            <file>file:/C:/Users/styde/Documents/NetBeansProjects/SavingStudentsinaDataBase/src/savingstudentsinadatabase/changeJFrame.java</file>
         </group>
     </open-files>
 </project-private>

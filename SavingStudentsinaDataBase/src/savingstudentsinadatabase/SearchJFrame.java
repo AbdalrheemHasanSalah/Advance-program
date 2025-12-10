@@ -5,6 +5,7 @@
 package savingstudentsinadatabase;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,11 +15,25 @@ import java.util.logging.Logger;
  * @author styde
  */
 public class SearchJFrame extends javax.swing.JInternalFrame {
-SQL sql;
+private SQL sql;
+ArrayList<student> s = new ArrayList<>();
+
+private int currentIndex=0;
+private String last_search="";
 
     /**
      * Creates new form SearchJFrame
      */
+public void show_student(student s){
+     firstnamejLabel_edit.setText(s.get_first_name());
+        lastnamejLabel_edit.setText(s.get_last_name());
+        IDjLabel_edit.setText(String.valueOf(s.getID()));
+        sexjLabel_edit.setText(s.get_sex());
+        
+        gradenamejLabel_edit.setText(Arrays.toString(s.get_grades_name()));
+        gradejLabel_edit.setText(Arrays.toString(s.get_grades()));
+        averagejLabel_edit.setText(String.valueOf(s.get_average()));
+}
     public SearchJFrame() {
         initComponents();
          try {
@@ -178,18 +193,16 @@ System.out.println(ex);
 
     private void searchjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchjButtonActionPerformed
         // TODO add your handling code here:
-       student s;
     s = sql.Search_student(searchtermjTextField.getText());
-    if(s!=null)
+    String term = searchtermjTextField.getText();
+
+    if(!(s.isEmpty()))
     {
-        firstnamejLabel_edit.setText(s.get_first_name());
-        lastnamejLabel_edit.setText(s.get_last_name());
-        IDjLabel_edit.setText(String.valueOf(s.getID()));
-        sexjLabel_edit.setText(s.get_sex());
-        
-        gradenamejLabel_edit.setText(Arrays.toString(s.get_grades_name()));
-        gradejLabel_edit.setText(Arrays.toString(s.get_grades()));
-        averagejLabel_edit.setText(String.valueOf(s.get_average()));}
+        show_student(s.get(currentIndex));
+        currentIndex++;
+           last_search = term;
+
+       }
     else{
         firstnamejLabel_edit.setText(" ");
         lastnamejLabel_edit.setText(" ");
@@ -201,6 +214,11 @@ System.out.println(ex);
         averagejLabel_edit.setText(" ");
         
     }
+    if (currentIndex >= s.size()) {
+        currentIndex = 0;
+        s.clear();
+    }
+    
     }//GEN-LAST:event_searchjButtonActionPerformed
 
     /**

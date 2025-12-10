@@ -80,26 +80,29 @@ System.out.println(ex);
       
            String line=T.nextLine().trim();
                        if(line.isEmpty())continue;
-          String [] line_split=line.split("\\s+");
+          String [] line_split=line.split("\\s{2,}");
             
                 first_name=line_split[0];
                 last_name=line_split[1];
                 ID=Integer.parseInt(line_split[2]);
                 sex=line_split[3];
                 Grade=line_split[4];
-                average=Double.parseDouble(line_split[5]);
                 Grade=Grade.replace("[","");
-                Grade=Grade.replace("]"," ");
+                Grade=Grade.replace("]","");
                 if(!Grade.isEmpty())
-                { String [] All_Grade= Grade.split(",");
+                    
+                { String [] All_Grade= Grade.trim().split(",");
                 for(int i=0;i<All_Grade.length;i++){
-                    String [] grade_neme_value=All_Grade[i].split(":");
-                    grades_name.add(grade_neme_value[0]);
-                    grades.add(Double.parseDouble(grade_neme_value[1]));
+                    String [] grade_neme_value=All_Grade[i].trim().split(":");
+                    grades_name.add(grade_neme_value[0].trim());
+                    grades.add(Double.parseDouble(grade_neme_value[1].trim()));
                 }
+                double sum=0;
                 for(int i=0;i<grades_name.size();i++){
                     Grade_student.add(new Grade(grades_name.get(i),grades.get(i)));
+                    sum+=grades.get(i);
                 }
+                average=sum/grades_name.size();
                 }
                                 student s=new student(ID,first_name,last_name,sex,Grade_student,average);
                 sql.create_or_update(s);
@@ -165,7 +168,7 @@ System.out.println(ex);
         try {
             file=new PrintStream(str_path);
             
-file.printf("%-15s %-15s %-10s %-10s %-25s %-10s%n",
+file.printf("%-15s  %-15s  %-10s  %-10s  %-25s  %-10s%n",
         "fname", "lname", "ID", "sex", "grades", "average");
 
 
@@ -175,7 +178,7 @@ for (int i = 0; i < stu.size(); i++) {
             stu.get(i).get_grades()
     );
 
-    file.printf("%-15s %-15s %-10d %-10s %-25s %-10.2f%n",
+    file.printf("%-15s  %-15s  %-10d  %-10s  %-25s  %-10.2f%n",
             stu.get(i).get_first_name(),
             stu.get(i).get_last_name(),
             stu.get(i).getID(),
@@ -202,7 +205,7 @@ for (int i = 0; i < stu.size(); i++) {
     for (int i = 0; i < names.length; i++) {
         result += names[i] + ":" + grades[i];
         if (i < names.length - 1) {
-            result += ", ";   
+            result += ",";   
         }
     }
     
